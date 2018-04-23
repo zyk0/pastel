@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>pastel</title>
+
+<script type="text/javascript">
+	var IE = '\v' == 'v';
+	
+	if(IE) {	
+		document.write(' internet explorer не поддерживается ');
+	}
+</script>
+
+	<link rel="shortcut icon" href="img/ico.ico" type="image/x-icon">
+	<link rel="icon" type="image/png" href="img/ico.ico">
+	<link href="css.css" rel="stylesheet">
+	
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
+			<!-- react-router-dom v. 4.2 -->
+	<script src="https://unpkg.com/react-router-dom@4.2.2/umd/react-router-dom.min.js"></script>
+			<!-- babel -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>	
+	
+	<!-- курс bitcoin'а нативным методом fetch() -->
+	<script src="./fetch.js" async></script>
+	<!-- jquery для курса валют -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>	
+	<!-- курс usd eur $.Ajax() -->
+	<script src="./usd.js" async></script>
+
+	<!-- 		погода		-->
+		<!-- axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
+		<!-- weather-icons -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="nav"></div>
+
+<br>
+
+<section>
+	<span class="usd">&#36; : 
+		<span id="usd"></span>
+	</span> 
+	<span class="eur">&#8364; :
+		<span id="eur"></span>
+	</span>
+	<span class="bitcoin">&#3647;  : 
+		<span id="bitcoin"></span> <small>dollars</small><!--долларов-->
+	</span>
+	<br>
+	<span class="pogoda">
+		<span id="pogoda"></span>
+	</span>
+</section>
+<br>
+
+<br>
+
+<div class="row">
+	<div id="first" class="column">
+	</div>
+
+	<div id="second" class="column">
+	</div>
+
+	<div id="third" class="column">
+	</div>
+
+	<div id="fourth" class="column">
+	</div>
+</div>
+
+<script type="text/babel">
+const Router  = ReactRouterDOM.BrowserRouter;
+const Route   = ReactRouterDOM.Route;
+const Switch  = ReactRouterDOM.Switch;
+const Link    = ReactRouterDOM.Link;
+const NavLink = ReactRouterDOM.NavLink;
+
+/*	 ===== 		погода	start	=====	*/ 
+function getLocation() {
+  return axios.get("https://ipapi.co/json/");
+}
+
+function getWeather(location) {
+  //let location = "";
+  let units = "&units=metric";
+  let appid = "&APPID=e8656d00ae56fd09428db5cae581be02";
+  return axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + location + units + appid);
+}
+
+class Pogoda extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      format: 'C',
+      location: '',
+      weather: '',
+      temp: ''
+    };
+  }
+  
+  componentDidMount() { 
+    let _this = this;
+	
+    getLocation().then(function(result) { 
+		let loc = result.data.city + ' '
+		//console.log(typeof loc); // string
+        //let loc = result.data.city + ', ' + result.data.country;
+		//request to ipapi.co
+      
+        getWeather(loc).then(function(result) {
+
+          _this.setState({
+            location: loc,
+            weather: result.data.weather[0],
+            temp: result.data.main.temp
+          })
+
+        });	
+    }).catch(
+      _this.setState({
+        location: '',
+        temp: ''
+      })
+
+    );
+  }
+  render() {
+    let hr = (new Date).getHours()
+    let timesofday = (hr >= 20) ? 'night' : 'day';
+    
+    return (
+        <span>
+			<span>{this.state.location} <b className="weathertemp">{this.state.temp} &#8451; </b> </span>
+			<i className={'wi wi-owm-' + timesofday + '-' + this.state.weather.id}></i>
+        </span>
+
+    );
+  }
+}
+
+ReactDOM.render(
+  <Pogoda />, document.getElementById('pogoda')
+);
+
+/*	 ===== 		погода end		=====	*/ 
+
+
+class Mayon extends React.Component{
+
+	showMessage(){console.log('клик пропс class Mayon');}
+	
+     render(){
+            return (
+			  <div>
+			  <span>island: {this.props.island} <span onClick={this.showMessage}>push</span></span>
+					<img src="https://source.unsplash.com/random/180x280/?nature" />
+					<img src="img/ocean.jpg" />
+					<img src="img/beach.jpg" />
+					<img src="img/line.jpg" />
+					<img src="img/pastel.jpg" />
+					<img src="img/underwater.jpg" />
+			  </div>
+			);
+        }
+    }
+
+class Kanlaon extends React.Component{
+
+	showMessage(){console.log('клик пропс class Kanlaon');}
+	
+     render(){
+            return (
+			  <div>
+			  <span>island: {this.props.island} <span onClick={this.showMessage}>push</span></span>
+					<img src="img/line.jpg" />
+					<img src="img/pastel.jpg" />
+					<img src="img/ocean.jpg" />
+					<img src="img/beach.jpg" />
+					<img src="img/underwater.jpg" />
+					<img src="img/pastel.jpg" />
+					
+			  </div>
+			);
+        }
+    }
+
+class Taal extends React.Component{
+     render(){
+            return (
+			  <div>
+			  <span>island: {this.props.island}</span>
+				<img src="img/rocks.jpg"/>
+				<img src="img/falls2.jpg" />
+				<img src="img/sea.jpg"  />
+				<img src="img/nature.jpg" />
+				<img src="img/mist.jpg"   />
+				<img src="img/beach.jpg"  />
+				<img src="img/sea.jpg"  />
+			  </div>
+			);
+        }
+    }
+
+	ReactDOM.render(
+		<Taal island="first Taal"/>,
+		first
+	);
+	ReactDOM.render(
+		<Mayon island="second Mayon"/>,
+		second
+	);
+
+	ReactDOM.render(
+		<Kanlaon island="third Kanlaon"/>,
+		third
+	);
+
+	ReactDOM.render(
+		<Taal island="fourth Taal"/>,
+		fourth
+	);
+	
+	/*    ---    компоненты роутинга       ---      */
+	class One extends React.Component{
+        render(){
+            return (<div>
+						<h2> One </h2>
+						<article className="card">
+						<br />
+						<img className="photo" src="img/one.png" />
+						<br />
+						</article>
+					</div>);
+        }
+    }
+	
+	class Two extends React.Component{
+        render(){
+            return (<div>
+					<h2>Two</h2>
+						<article className="card">
+							<br />
+							<img className="photo" src="img/two.png" />
+							<br />
+						</article>
+					</div>);
+        }
+    }
+	class Three extends React.Component{
+        render(){
+            return (<div>
+						<h2> Three </h2>
+						<article className="card">
+						<br />
+						<img className="photo" src="img/three.png" />
+						<br />
+						</article>
+					</div>);
+        }
+    }
+	class Four extends React.Component{
+        render(){
+            return (<div>
+						<h2> Four </h2>
+						<article className="card">
+						<br />
+						<img className="photo" src="img/four.png" />
+						<br />
+						</article>
+					</div>);
+        }
+    }
+	class Five extends React.Component{
+        render(){
+            return (<div>
+					<h2> Five </h2>
+						<article className="card">
+						<br />
+						<img className="photo" src="img/five.png" />
+						<br />
+						</article>
+					</div>);
+        }
+    }
+    class NotFound extends React.Component{
+        render(){
+            return (<div><h2> react router don't launch</h2></div>);
+        }
+    }
+      
+	/*		меню. панель навигации		*/
+	
+	class Nav extends React.Component{
+    render(){
+        return <nav className="et-hero-tabs">
+				<div className="et-hero-tabs-container">
+					<NavLink exact to="/"	 className="et-hero-tab" activeClassName="active"> 	   1.one     </NavLink>					
+					<NavLink exact to="/two"	 className="et-hero-tab" activeClassName="active"> 2.two     </NavLink>
+					<NavLink exact to="/three"   className="et-hero-tab" activeClassName="active"> 3.three   </NavLink>
+					<NavLink exact to="/four"    className="et-hero-tab" activeClassName="active"> 4.four	 </NavLink>
+					<NavLink exact to="/five"    className="et-hero-tab" activeClassName="active"> 5.five	 </NavLink>
+				</div>	
+               </nav>;
+		}
+	}	
+	
+	/* ====		роутер с подключенной навигацией	==== */
+	
+    ReactDOM.render(
+	<Router>
+	<div>
+	<Nav />{/*класс внутри роутера*/}
+		<Switch>
+			<Route exact path="/"   component={One} /> 
+			{/*children={()=><h2>Центр</h2>} />*/}
+			<Route path="/two"      component={Two} />
+			<Route path="/three"    component={Three} />
+			<Route path="/four"     component={Four} />
+			<Route path="/five"     component={Five} />
+			<Route 					component={NotFound} />
+		</Switch>
+	</div>
+	</Router>,
+        document.getElementById("nav")
+    	)
+	
+</script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-bottom: 50px;
+	font-family: 'Open Sans', sans-sarif;
+	padding: 0px;
+	background-color: #87cefa;
+}
+
+img{
+	width:100%;
+}
+
+.text-small{
+	margin-top: 10px;
+	margin-left: 0px;
+	vertical-align: middle;
+	display: inline-block;
+	font-size: .3em;
+}
+
+.row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media (max-width: 800px) {
+    .column {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .column {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+/*   section  currency rate   start */
+section{
+	width: 50%;
+	background-color: #66b1f1;
+	color: #193d70;
+	font-size: 125%;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+
+}
+
+.bitcoin{
+	margin: 0px 0px 0px 10px;
+}
+.eur{
+	margin: 0px 0px 0px 10px;
+}
+.usd{
+	margin: 0px 0px 0px 10px;
+}
+#bitcoin{
+	color: #ffffff;
+	font-weight: bold;
+}
+#usd{
+	color: #ffffff;
+	font-weight: bold;
+}
+#eur{
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.pogoda{
+	margin: 0px 0px 0px 10px;
+}
+.weathertemp{
+	color: #ffffff;
+	margin: 0px 5px 0px 5px;
+}
+
+/*   section  currency rate   finish */
+p{
+	font-size: 26px;
+}
+
+a{
+	text-decoration: none; /*  */
+} 
+	
+	
+/* 	NAV start 	*/
+.active{ 
+	background: #e8dbff;
+}
+
+.et-hero-tabs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  position: relative;
+  background: #f8f4ff; /*Магнолия*/
+  text-align: center;
+  padding: 0 2em;
+}
+.et-hero-tabs{
+  font-size: 2rem;
+  margin: 0;
+  letter-spacing: 1rem;
+}
+.et-hero-tabs{
+  font-size: 1rem;
+  letter-spacing: 0.3rem;
+  opacity: 0.6;
+}
+
+.et-hero-tabs-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: #f0f8ff;
+  z-index: 10;
+}
+.et-hero-tabs-container--top {
+  position: fixed;
+  top: 0;
+}
+
+.et-hero-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  color: #000;
+  letter-spacing: 0.1rem;
+  transition: all 0.5s ease;
+  font-size: 0.8rem;
+}
+.et-hero-tab:hover {
+  color: white;
+  background: #66b1f1;
+  transition: all 0.5s ease;
+}
+
+@media (min-width: 800px) {
+  .et-hero-tabs{
+    font-size: 3rem;
+  }
+  .et-hero-tabs{
+    font-size: 1rem;
+  }
+
+  .et-hero-tab {
+    font-size: 1rem;
+  }
+}
+
+/* 	NAV finish 	*/
+
+.photo{
+	display: flex;
+	width: 50%;
+	/*
+	width: 622px;
+	*/
+	height: 80px;
+}
+
+@media (max-width: 800px) {
+    .photo {
+        width: 75%;
+    }
+	section{
+        width: 75%;
+		font-size: 125%;
+	}
+}
+
+@media (max-width: 600px) {
+    .photo {
+        width: 90%;
+    }
+	section{
+        width: 90%;
+		font-size: 125%;
+	}
+}
+
+@media (max-width: 400px) {
+    .photo {
+        width: 100%;
+    }
+	section{
+        width: 100%;
+		font-size: 125%;
+	}
+}
+
+
+	
+
+
