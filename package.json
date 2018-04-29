@@ -1,7 +1,7 @@
 {
 	"name": "pastel-react",
 	"version": "1.0.0",
-	"description": "page react.js routing flexbox ",
+	"description": "page: react.js, react-router, flexbox ",
 	"main": "index.js",
 	"scripts": {
 		"start": "lite-server"
@@ -10,5 +10,7 @@
 	"devDependencies": {
 		"lite-server": "^2.2.2"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"git-flow": "^0.2.0"
+	}
 }
