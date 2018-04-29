@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
     <title>pastel</title>
-
-<script type="text/javascript">
-	var IE = '\v' == 'v';
-	
-	if(IE) {	
-		document.write(' internet explorer не поддерживается ');
-	}
-</script>
-
 	<link rel="shortcut icon" href="img/ico.ico" type="image/x-icon">
 	<link rel="icon" type="image/png" href="img/ico.ico">
+	
+<script>
+var IE='\v'=='v';
+if(IE == true ) {
+	console.log('  ie  6 - 10  ');
+	document.write('<h1> страница не поддерживает internet explorer! <h1>');
+	document.write('<h1>  используйте современный браузер </h1>');
+}
+if(!(window.ActiveXObject) && "ActiveXObject" in window){
+	console.log('  ie11  ');
+	document.write('<h1> internet explorer не поддерживается! </h1>');
+	document.write('<h1>  используйте современный браузер: </h1>');
+	document.write('<span>Chrome<a href="https://www.google.ru/chrome/index.html"><img class="browser" src="https://icon-icons.com/icons2/844/PNG/512/Google_Chrome_icon-icons.com_67098.png" /></a></span><span class="browser">Firefox<a href="https://www.mozilla.org/ru/firefox/new/"><img class="browser" src="https://www.w3schools.com/browsers/pic_firefox128.png" /></a></span> <span class="browser">Opera<a href="https://www.opera.com/ru"><img class="browser" src="https://cdn1.iconfinder.com/data/icons/android-png/256/Android-Opera-Mini.png"/></a></span>');
+}
+</script>
+	
 	<link href="css.css" rel="stylesheet">
 	
 	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
@@ -36,6 +43,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
 		<!-- weather-icons -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" rel="stylesheet">
+
 </head>
 
 <body>

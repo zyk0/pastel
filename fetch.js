@@ -6,7 +6,7 @@ https://caniuse.com/#search=fetch
 
 
 var coin = document.getElementById('bitcoin');
-console.log(coin); 
+//console.log(coin);
 fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
   .then(function(response){
     if(response.status !==200) {
@@ -18,9 +18,9 @@ fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
     //отлов ошибок 
   })
   .then( function(response) {
-        console.log('status: '  + response.status); 
-       console.log('URL: ' 	    + response.url);
-      console.log('type: '      + response.type); 
+        //console.log('status: '  + response.status); 
+       //console.log('URL: ' 	  + response.url);
+      //console.log('type: '      + response.type); 
 	  console.info("%c : github.com/zyk0", "background: #de5d83; color: #ffffff"); 
       return response.json();
     })
