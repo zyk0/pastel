@@ -26,7 +26,9 @@ if(!(window.ActiveXObject) && "ActiveXObject" in window){
 	
 	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-
+	
+	<!-- styled-components -->
+	<script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
 			<!-- react-router-dom v. 4.2 -->
 	<script src="https://unpkg.com/react-router-dom@4.2.2/umd/react-router-dom.min.js"></script>
 			<!-- babel -->
@@ -51,8 +53,6 @@ if(!(window.ActiveXObject) && "ActiveXObject" in window){
 
 <div id="nav"></div>
 
-<br>
-
 <section>
 	<span class="usd">&#36; : 
 		<span id="usd"></span>
@@ -68,9 +68,9 @@ if(!(window.ActiveXObject) && "ActiveXObject" in window){
 		<span id="pogoda"></span>
 	</span>
 </section>
-<br>
 
-<br>
+<div id="social"></div>
+
 
 <div class="row">
 	<div id="first" class="column">
@@ -92,6 +92,91 @@ const Route   = ReactRouterDOM.Route;
 const Switch  = ReactRouterDOM.Switch;
 const Link    = ReactRouterDOM.Link;
 const NavLink = ReactRouterDOM.NavLink;
+
+
+/* === === === styled-components === === === */
+const styled = styled.default;
+
+const Wrapper = styled.div`
+	display: -ms-flexbox; 
+    display: flex;
+    -ms-flex-wrap: wrap; 
+    flex-wrap: wrap;
+	margin: 10px 0px 10px 0px;
+`;
+
+const Title = styled.div`
+	color: white;
+	position: left;
+	
+	-ms-flex: 25%; 
+    flex: 25%;
+    max-width: 25%;
+	
+	margin: 10px 0px 0px 0px;
+	font-weight: bold;
+`;
+
+const Figma = styled.div`
+	background-color: #ffb02e;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+	
+	:hover{
+	background-color: #ff8e0d;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+`;
+
+const Sketch = styled.div`
+	background-color: #00cccc;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+	
+	:hover{
+	background-color: #00ffff;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+`;
+
+const Zeplin = styled.div`
+	background-color: #00a86b;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+	
+	:hover{
+	background-color: #00db8b;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+`;
+
+const Adobe = styled.div`
+	background-color: #f19cbb;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+	
+	:hover{
+	background-color: #ffaacc;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+`;
+
+const CopyLink = styled.a`
+  align-items: stretch;
+  color: #f0ffff;
+  text-decoration: none;
+  
+  :hover{
+	color: #e0ffff;
+	font-weight: bolder;
+  }
+  :focus {
+    text-decoration: underline;
+	
+  }
+`;
+
+/*  === === === styled-components === === === */
 
 /*	 ===== 		погода	start	=====	*/ 
 function getLocation() {
@@ -165,6 +250,10 @@ ReactDOM.render(
 
 class Mayon extends React.Component{
 
+	propTypes: {
+	  name: React.PropTypes.string.isRequired,
+	}
+
 	showMessage(){console.log('клик пропс class Mayon');}
 	
      render(){
@@ -177,12 +266,17 @@ class Mayon extends React.Component{
 					<img src="img/underwater.jpg" />
 					<img src="img/line.jpg" />
 					<img src="img/sea.jpg"  />
+					<img src="img/line.jpg" />
 			  </div>
 			);
         }
     }
 
 class Kanlaon extends React.Component{
+
+	propTypes: {
+	  name: React.PropTypes.string.isRequired,
+	}
 
 	showMessage(){console.log('клик пропс class Kanlaon');}
 	
@@ -202,6 +296,11 @@ class Kanlaon extends React.Component{
     }
 
 class Taal extends React.Component{
+
+	propTypes: {
+	  name: React.PropTypes.string.isRequired,
+	}
+
      render(){
             return (
 			  <div>
@@ -214,6 +313,19 @@ class Taal extends React.Component{
 				<img src="img/beach.jpg"  />
 				<img src="img/sea.jpg"  />
 			  </div>
+			);
+        }
+    }
+
+class Social extends React.Component{
+     render(){
+            return (
+				<Wrapper>
+					<Title><Figma>	 <CopyLink href="#!">figma  </CopyLink></Figma>  </Title>
+					<Title><Sketch>  <CopyLink href="#!">sketch </CopyLink></Sketch> </Title>
+					<Title><Zeplin>  <CopyLink href="#!">zeplin </CopyLink></Zeplin> </Title>
+					<Title><Adobe>   <CopyLink href="#!">adobe  </CopyLink></Adobe>	 </Title>
+				</Wrapper>
 			);
         }
     }
@@ -236,6 +348,12 @@ class Taal extends React.Component{
 		<Taal island="fourth Taal"/>,
 		fourth
 	);
+	
+	ReactDOM.render(
+		<Social />,
+		social
+	);
+	
 	
 	/*    ---    компоненты роутинга       ---      */
 	class One extends React.Component{
