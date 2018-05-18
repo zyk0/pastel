@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>pastel</title>
-	<link rel="shortcut icon" href="img/ico.ico" type="image/x-icon">
-	<link rel="icon" type="image/png" href="img/ico.ico">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	
 <script>
 var IE='\v'=='v';
@@ -90,7 +89,7 @@ if(!(window.ActiveXObject) && "ActiveXObject" in window){
 const Router  = ReactRouterDOM.BrowserRouter;
 const Route   = ReactRouterDOM.Route;
 const Switch  = ReactRouterDOM.Switch;
-const Link    = ReactRouterDOM.Link;
+//const Link    = ReactRouterDOM.Link;
 const NavLink = ReactRouterDOM.NavLink;
 
 
@@ -123,8 +122,9 @@ const Figma = styled.div`
 	padding: 10px 0px 0px 15px;
 	
 	:hover{
-	background-color: #ff8e0d;
+	background-color: #ff8e00;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	text-shadow: 0px 3px #ff7518;
     }
 `;
 
@@ -136,6 +136,7 @@ const Sketch = styled.div`
 	:hover{
 	background-color: #00ffff;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	text-shadow: 0px 3px #00cccc;
     }
 `;
 
@@ -147,6 +148,7 @@ const Zeplin = styled.div`
 	:hover{
 	background-color: #00db8b;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	text-shadow: 0px 3px #00a86b;
     }
 `;
 
@@ -158,6 +160,7 @@ const Adobe = styled.div`
 	:hover{
 	background-color: #ffaacc;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	text-shadow: 0px 3px #ff7aaf;
     }
 `;
 
