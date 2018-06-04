@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <title>pastel</title>
-	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
+    <link rel="shortcut icon" href="./img/favicon.ico">
 	
 <script>
 var IE='\v'=='v';
@@ -51,7 +52,7 @@ if(!(window.ActiveXObject) && "ActiveXObject" in window){
 <body>
 
 <div id="nav"></div>
-
+<br />
 <section>
 	<span class="usd">&#36; : 
 		<span id="usd"></span>
@@ -91,6 +92,7 @@ const Route   = ReactRouterDOM.Route;
 const Switch  = ReactRouterDOM.Switch;
 //const Link    = ReactRouterDOM.Link;
 const NavLink = ReactRouterDOM.NavLink;
+const Redirect = ReactRouterDOM.Redirect;
 
 
 /* === === === styled-components === === === */
@@ -362,7 +364,7 @@ class Social extends React.Component{
 	class One extends React.Component{
         render(){
             return (<div>
-						<h2> One </h2>
+						<h2>One</h2>
 						<article className="card">
 						<br />
 						<img className="photo" src="img/one.png" />
@@ -387,7 +389,7 @@ class Social extends React.Component{
 	class Three extends React.Component{
         render(){
             return (<div>
-						<h2> Three </h2>
+						<h2>Three</h2>
 						<article className="card">
 						<br />
 						<img className="photo" src="img/three.png" />
@@ -399,7 +401,7 @@ class Social extends React.Component{
 	class Four extends React.Component{
         render(){
             return (<div>
-						<h2> Four </h2>
+						<h2>Four</h2>
 						<article className="card">
 						<br />
 						<img className="photo" src="img/four.png" />
@@ -411,7 +413,7 @@ class Social extends React.Component{
 	class Five extends React.Component{
         render(){
             return (<div>
-					<h2> Five </h2>
+					<h2>Five</h2>
 						<article className="card">
 						<br />
 						<img className="photo" src="https://source.unsplash.com/random/640x122/" />
@@ -432,7 +434,7 @@ class Social extends React.Component{
     render(){
         return <nav className="et-hero-tabs">
 				<div className="et-hero-tabs-container">
-					<NavLink exact to="/"	 className="et-hero-tab" activeClassName="active"> 	   1.one     </NavLink>					
+					<NavLink exact to="/"	 className="et-hero-tab" activeClassName="active">     1.one     </NavLink>					
 					<NavLink exact to="/two"	 className="et-hero-tab" activeClassName="active"> 2.two     </NavLink>
 					<NavLink exact to="/three"   className="et-hero-tab" activeClassName="active"> 3.three   </NavLink>
 					<NavLink exact to="/four"    className="et-hero-tab" activeClassName="active"> 4.four	 </NavLink>
@@ -449,11 +451,13 @@ class Social extends React.Component{
 	<div>
 	<Nav />{/*класс внутри роутера*/}
 		<Switch>
-			<Route exact path="/"   component={One} /> 
+			{/*<Redirect from="/" to="/one" />*/}
+			<Route exact path="/"   component={One} />
 			{/*children={()=><h2>Центр</h2>} />*/}
 			<Route path="/two"      component={Two} />
 			<Route path="/three"    component={Three} />
-			<Route path="/four"     component={Four} />
+			{/*<Route path="/four"     component={Four} />*/}
+			<Redirect from="/four" to="/five" />
 			<Route path="/five"     component={Five} />
 			<Route 					component={NotFound} />
 		</Switch>
