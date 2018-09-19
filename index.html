@@ -2,9 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8" />
+	<!-- responsive for mobile  -->
+	<meta name="viewport" content="width-device-width, initial-scale=1.0" />
     <title>pastel</title>
-	<!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
-    <link rel="shortcut icon" href="./img/favicon.ico">
+	
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	
 <script>
 var IE='\v'=='v';
@@ -36,10 +39,12 @@ if(!(window.ActiveXObject) && "ActiveXObject" in window){
 	
 	<!-- курс bitcoin'а нативным методом fetch() -->
 	<script src="./fetch.js" async></script>
-	<!-- jquery для курса валют -->
+	
+	<!-- jquery для курса валют 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>	
-	<!-- курс usd eur $.Ajax() -->
+	курс usd eur $.Ajax() 
 	<script src="./usd.js" async></script>
+	-->
 
 	<!-- 		погода		-->
 		<!-- axios -->
@@ -54,12 +59,14 @@ if(!(window.ActiveXObject) && "ActiveXObject" in window){
 <div id="nav"></div>
 <br />
 <section>
+	<!--
 	<span class="usd">&#36; : 
 		<span id="usd"></span>
 	</span> 
 	<span class="eur">&#8364; :
 		<span id="eur"></span>
 	</span>
+	-->
 	<span class="bitcoin">&#3647;  : 
 		<span id="bitcoin"></span> <small>dollars</small><!--долларов-->
 	</span>
@@ -119,14 +126,14 @@ const Title = styled.div`
 `;
 
 const Figma = styled.div`
-	background-color: #ffb02e;
+	background-color: #ffa343;
 	height: 40px;
 	padding: 10px 0px 0px 15px;
 	
 	:hover{
 	background-color: #ff8e00;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
-	text-shadow: 0px 3px #ff7518;
+	text-shadow: 0px 3px #ff8e00;
     }
 `;
 
@@ -179,6 +186,15 @@ const CopyLink = styled.a`
     text-decoration: underline;
 	
   }
+  
+@media (max-width: 350px) {
+	Wrapper{
+		width: 50%;
+		display: flex;
+		flex-wrap: wrap;
+		margin: 10px 20px 10px 20px;
+	}
+}  
 `;
 
 /*  === === === styled-components === === === */
@@ -424,7 +440,8 @@ class Social extends React.Component{
     }
     class NotFound extends React.Component{
         render(){
-            return (<div><h2> react router do not use</h2></div>);
+			const notuse = <h4>react router don't use</h4>;
+            return (<div>{notuse}</div>);
         }
     }
       
@@ -456,8 +473,8 @@ class Social extends React.Component{
 			{/*children={()=><h2>Центр</h2>} />*/}
 			<Route path="/two"      component={Two} />
 			<Route path="/three"    component={Three} />
-			{/*<Route path="/four"     component={Four} />*/}
-			<Redirect from="/four" to="/five" />
+			{/*<Route path="/four"  component={Four} />*/}
+			<Redirect from="/four"  to="/five" />
 			<Route path="/five"     component={Five} />
 			<Route 					component={NotFound} />
 		</Switch>

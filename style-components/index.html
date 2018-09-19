@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>style component</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link href="css.css" rel="stylesheet">
+
+	
+	<!-- babel -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>	
+	
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<!-- styled-components -->
+	<script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+	<!--
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.1.6/redux.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/4.1.2/react-redux.js"></script>	
+	-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.0/underscore-min.js"></script>	
+	
+	<script src="countermodule.js"></script>
+	
+	<!-- -->
+	<script src="https://unpkg.com/fetch-jsonp@1.1.3/build/fetch-jsonp.js"></script>
+</head>
+
+<body>
+<p>
+<a href="https://medium.freecodecamp.org/learn-react-js-in-5-minutes-526472d292f4">
+learn-react-js-in-5-minutes
+</a>
+<a href="https://scrimba.com">bulma js grid</a>
+</p>
+
+
+<div id="star">
+	star
+</div>
+
+
+
+<div id="hello">
+	React learning club
+</div>
+
+<div id="social"></div>
+
+<div class="social">
+	<div class="ui-social figma">html figma</div>
+	<div class="ui-social sketch">html sketch</div>
+	<div class="ui-social zeplin">html zeplin</div>
+	<div class="ui-social adobe">html adobe</div>
+</div>
+
+<br>
+<p>
+  <div class="" >
+	<script type="text/javascript">
+	      var countermodule;
+	  </script>
+  </div>
+</p>
+<br><br><br><br><br>
+<div id="foo"></div><br><br><br><br><br>
+
+
+<script type="text/javascript">
+//console.image("http://i.imgur.com/hv6pwkb.png");
+console.log('%c       ', 'font-size: 100px; background: url(http://cdn.nyanit.com/nyan2.gif) no-repeat;');
+</script>
+	
+<br />	
+<p><a href="https://codepen.io/davidkpiano/pen/WZYXKv?editors=0110">codepen</a></p>
+<div id="app">Appp</div>
+<br />	
+	
+</br>
+<div id="kingsley">
+	
+</div>
+</br>
+
+
+<div class="row"><!-- flex галерея с картинками -->
+	<div id="first" class="column">
+	</div>
+
+	<div id="second" class="column">
+	</div>
+
+	<div id="third" class="column">
+	</div>
+
+	<div id="fourth" class="column">
+	</div>
+</div>
+
+<script type="text/babel">
+
+const styled = styled.default;
+
+const Link = styled.a`
+  align-items: center;
+  color: white;
+`;
+
+
+const Wrapper = styled.div`
+	display: -ms-flexbox; 
+    display: flex;
+    -ms-flex-wrap: wrap; 
+    flex-wrap: wrap;
+	margin: 10px 0px 10px 0px;
+`;
+
+const Title = styled.div`
+	color: white;
+	position: left;
+	
+	-ms-flex: 25%; 
+    flex: 25%;
+    max-width: 25%;
+	
+	margin: 10px 0px 0px 0px;
+	font-weight: bold;
+	
+
+	
+	${Link}:hover & {
+		background-color: #ffffff;
+		color: dark;
+	}
+
+`;
+
+const Figma = styled.div`
+	background-color: #ffb02e;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+`;
+
+const Sketch = styled.div`
+	background-color: #00cccc;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+`;
+
+const Zeplin = styled.div`
+	background-color: #00a86b;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+`;
+
+const Adobe = styled.div`
+	background-color: #f19cbb;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+`;
+
+
+
+
+/////////////////////////////////////
+const King = ({name}) => {
+  return (
+ <div>
+ <h2>Это {name} компонент</h2>
+ </div>
+  )
+}
+
+
+
+/*		Gallery app with Finite State Machines		*/
+const galleryMachine = {
+  start: {
+    SEARCH: 'loading'
+  },
+  loading: {
+    SEARCH_SUCCESS: 'gallery',
+    SEARCH_FAILURE: 'error',
+    CANCEL_SEARCH: 'gallery'
+  },
+  error: {
+    SEARCH: 'loading'
+  },
+  gallery: {
+    SEARCH: 'loading',
+    SELECT_PHOTO: 'photo'
+  },
+  photo: {
+    EXIT_PHOTO: 'gallery'
+  }
+};
+
+class App extends React.Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      gallery: 'start', // finite state
+      query: '',
+      items: []
+    };
+  }
+  
+  command(nextState, action) {
+    switch (nextState) {
+      case 'loading':
+        // execute the search command
+        this.search(action.query);
+        break;
+      case 'gallery':
+        if (action.items) {
+          // update the state with the found items
+          return { items: action.items };
+        }
+        break;
+      case 'photo':
+        if (action.item) {
+          // update the state with the selected photo item
+          return { photo: action.item };
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  
+  transition(action) {
+    const currentGalleryState = this.state.gallery;
+    const nextGalleryState =
+      galleryMachine[currentGalleryState][action.type];
+    
+    if (nextGalleryState) {
+      const nextState = this.command(nextGalleryState, action);
+      
+      this.setState({
+        gallery: nextGalleryState,
+        ...nextState
+      });
+    }
+  }
+  
+  handleSubmit(e) {
+    e.persist();
+    e.preventDefault();
+    
+    this.transition({ type: 'SEARCH', query: this.state.query });
+  }
+  
+  search(query) {
+    const encodedQuery = encodeURIComponent(query);
+    
+    setTimeout(() => {      
+      fetchJsonp(
+        `https://api.flickr.com/services/feeds/photos_public.gne?lang=en-us&format=json&tags=${encodedQuery}`,
+        { jsonpCallback: 'jsoncallback' })
+        .then(res => res.json())
+        .then(data => {
+          this.transition({ type: 'SEARCH_SUCCESS', items: data.items });
+        })
+        .catch(error => {
+          this.transition({ type: 'SEARCH_FAILURE' });
+        });
+    }, 1000);
+  }
+  handleChangeQuery(value) {
+    this.setState({ query: value })
+  }
+  renderForm(state) {
+    const searchText = {
+      loading: 'Searching...',
+      error: 'Try search again',
+      start: 'Search'
+    }[state] || 'Search';
+    
+    return (
+      <form className="ui-form" onSubmit={e => this.handleSubmit(e)}>
+        <input
+          type="search"
+          className="ui-input"
+          value={this.state.query}
+          onChange={e => this.handleChangeQuery(e.target.value)}
+          placeholder="Search Flickr for photos..."
+          disabled={state === 'loading'}
+        />
+        <div className="ui-buttons">
+          <button
+            className="ui-button"
+            disabled={state === 'loading'}>
+              {searchText}
+          </button>
+          {state === 'loading' &&
+            <button
+              className="ui-button"
+              type="button"
+              onClick={() => this.transition({ type: 'CANCEL_SEARCH' })}>
+              Cancel
+            </button>
+          }
+        </div>
+      </form>
+    );
+  }
+  renderGallery(state) {
+    return (
+      <section className="ui-items" data-state={state}>
+        {state === 'error'
+          ? <span className="ui-error">Uh oh, search failed.</span>
+          : this.state.items.map((item, i) =>
+            <img
+              src={item.media.m}
+              className="ui-item"
+              style={{'--i': i}}
+              key={item.link}
+              onClick={() => this.transition({
+                type: 'SELECT_PHOTO', item
+              })}
+            />
+          )
+        }
+      </section>
+    );
+  }
+  renderPhoto(state) {
+    if (state !== 'photo') return;
+    
+    return (
+      <section
+        className="ui-photo-detail"
+        onClick={() => this.transition({ type: 'EXIT_PHOTO' })}>
+        <img src={this.state.photo.media.m} className="ui-photo"/>
+      </section>
+    )
+  }
+  render() {
+    const galleryState = this.state.gallery;
+    
+    return (
+      <div className="ui-app" data-state={galleryState}>
+        {this.renderForm(galleryState)}
+        {this.renderGallery(galleryState)}
+        {this.renderPhoto(galleryState)}
+      </div>
+    );
+  }
+}
+/*     Gallery app with Finite State Machines          */
+
+class Mayon extends React.Component{
+
+	showMessage(){console.log('клик пропс class Mayon');}
+	
+     render(){
+            return (
+			  <div>
+			  {/*<span>island: {this.props.island} <span onClick={this.showMessage}>push</span></span>*/}
+			
+					<img src="img/ocean.jpg" />
+					<span><i>дата: </i>{(new Date).toDateString().substr(4, 11)} </span>
+					<img src="img/beach.jpg" />
+					<img src="img/pastel.jpg" />
+					<img src="img/underwater.jpg" />
+					<img src="img/line.jpg" />
+					<img src="img/sea.jpg"  />
+			  </div>
+			);
+        }
+    }
+
+class Kanlaon extends React.Component{
+	
+    constructor(){
+        super();
+        this.state = {
+            message: "Calm Kanlaon (state)..."
+        };
+        this.updateKanlaon = this.updateKanlaon.bind(this);
+    }
+	
+    updateKanlaon() {
+        this.setState({
+            message: "eruption!!! (changed state)"
+        },
+		function(){console.log('а тут callback!')}
+		);
+    }
+		
+	showMessage(){console.log('клик пропс class Kanlaon');}
+	
+     render(){
+            return (
+			  <div>
+			  <span>island: {this.props.island} <span onClick={this.showMessage}>push</span></span>
+			  <br/>
+			  <span onClick = {this.updateKanlaon}> Нажми </ span> 	
+			  
+			  <b>{this.state.message}</b>
+			  		
+					<img src="img/line.jpg" />
+					<img src="img/pastel.jpg" />
+					<img src="img/ocean.jpg" />
+					<img src="img/beach.jpg" />
+					<img src="img/underwater.jpg" />
+					<img src="img/pastel.jpg" />
+			  </div>
+			);
+        }
+    }
+
+class Taal extends React.Component{
+     render(){
+            return (
+			  <div>
+			  <span>island: {this.props.island}</span>
+				<img className="opasity" src="img/rocks.jpg"/>
+				<img className="opasity" src="img/falls2.jpg" />
+				<img className="opasity" src="img/sea.jpg"  />
+				<img className="opasity" src="img/nature.jpg" />
+				<img className="opasity" src="img/mist.jpg"   />
+				<img className="opasity" src="img/beach.jpg"  />
+				<img className="opasity" src="img/sea.jpg"  />
+			  </div>
+			);
+        }
+    }
+
+class Social extends React.Component{
+     render(){
+            return (
+				<Wrapper>
+					<Title><Figma>	 <Link href="#">figma</Link>  </Figma>     </Title>
+					<Title><Sketch>  <Link href="#">sketch</Link> </Sketch>    </Title>
+					<Title><Zeplin>  <Link href="#">zeplin</Link> </Zeplin>    </Title>
+					<Title><Adobe>   <Link href="#">adobe</Link>  </Adobe>	  </Title>
+				</Wrapper>
+			);
+        }
+    }
+
+
+
+
+class Hello extends React.Component {
+    
+    constructor(){
+        super();
+        this.state = {
+            message: "  изначальный стэйт  "
+        };
+        this.updateMessage = this.updateMessage.bind(this);
+    }
+	
+    updateMessage() {
+        this.setState({
+            message: " state поменялся!  "
+        });
+    }
+	
+    render() {
+	
+	let pom = <section>boom-boom!</section>
+		
+         return (
+           <div>
+             <h1>Стэйт: {this.state.message}!</h1>
+			 <br />
+				<button onClick={this.updateMessage}>кликнуть</button>
+			 <br />
+			 {pom}
+           </div>   
+        )
+    }
+}
+
+
+class Star extends React.Component{
+     render(){
+            return (
+					<div> star!!! </div>
+			);
+        }
+    }
+
+
+	ReactDOM.render(
+		<Star />,
+		document.getElementById('star')
+	);
+
+	
+	
+
+	ReactDOM.render(
+		<Taal island="first Taal"/>,
+		first
+	);
+	ReactDOM.render(
+		<Mayon island="second Mayon"/>,
+		second
+	);
+	ReactDOM.render(
+		<Kanlaon island="third Kanlaon"/>,
+		third
+	);
+	ReactDOM.render(
+		<Taal island="fourth Taal"/>,
+		fourth
+	);
+
+
+	
+
+	ReactDOM.render(
+		<Social />,
+		social
+	);
+	
+	ReactDOM.render(
+		<Hello />,
+		document.getElementById('hello')
+	);
+	
+	ReactDOM.render(
+		<App />, 
+		document.querySelector('#app')
+	);
+	
+	
+	ReactDOM.render(
+		<King name='функциональный' />, document.getElementById("kingsley")
+	);
+	
+</script>
+
+</body>
+</html>
