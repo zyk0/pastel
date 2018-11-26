@@ -4,69 +4,58 @@
     <meta charset="utf-8" />
 	<!-- responsive for mobile  -->
 	<meta name="viewport" content="width-device-width, initial-scale=1.0" />
-    <title>pastel</title>
+    <title>pastel color</title>
 	
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-	
-<script>
-var IE='\v'=='v';
-if(IE == true ) {
-	console.log('  ie  6 - 10  ');
-	document.write('<h1> страница не поддерживает internet explorer! <h1>');
-	document.write('<h1>  используйте современный браузер </h1>');
-	document.write('<span class="browser">Firefox<a href="https://www.mozilla.org/ru/firefox/new/"><img class="browser" src="https://www.w3schools.com/browsers/pic_firefox128.png" /></a></span><span>Chrome<a href="https://www.google.ru/chrome/index.html"><img class="browser" src="https://icon-icons.com/icons2/844/PNG/512/Google_Chrome_icon-icons.com_67098.png" /></a></span><span class="browser">Opera<a href="https://www.opera.com/ru"><img class="browser" src="https://cdn1.iconfinder.com/data/icons/android-png/256/Android-Opera-Mini.png"/></a></span>');
-}
-if(!(window.ActiveXObject) && "ActiveXObject" in window){
-	console.log('  ie11  ');
-	document.write('<h1> internet explorer не поддерживается! </h1>');
-	document.write('<h1>  используйте современный браузер: </h1>');
-	document.write('<span>Chrome<a href="https://www.google.ru/chrome/index.html"><img class="browser" src="https://icon-icons.com/icons2/844/PNG/512/Google_Chrome_icon-icons.com_67098.png" /></a></span><span class="browser">Firefox<a href="https://www.mozilla.org/ru/firefox/new/"><img class="browser" src="https://www.w3schools.com/browsers/pic_firefox128.png" /></a></span> <span class="browser">Opera<a href="https://www.opera.com/ru"><img class="browser" src="https://cdn1.iconfinder.com/data/icons/android-png/256/Android-Opera-Mini.png"/></a></span>');
-}
-</script>
+	<!-- warning for  EI -->
+	<script src="./ie.js"></script>
 	
 	<link href="css.css" rel="stylesheet">
 	
+	<!--  React v16.6.1 -->
 	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 	
-	<!-- styled-components -->
-	<script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
-			<!-- react-router-dom v. 4.2 -->
-	<script src="https://unpkg.com/react-router-dom@4.2.2/umd/react-router-dom.min.js"></script>
-			<!-- babel -->
+	<!-- React v16.0.0
+	<script crossorigin src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+	 -->
+		<!-- babel -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>	
 	
-	<!-- курс bitcoin'а нативным методом fetch() -->
-	<script src="./fetch.js" async></script>
+		<!-- styled-components 3.0.1 -->
+	<script src="https://unpkg.com/styled-components@3.0.1/dist/styled-components.min.js"></script>
 	
-	<!-- jquery для курса валют 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>	
-	курс usd eur $.Ajax() 
+		<!-- react-router-dom v. 4.2 -->
+	<script src="https://unpkg.com/react-router-dom@4.2.2/umd/react-router-dom.min.js"></script>
+			
+	<!-- курс bitcoin'а  -->
+	<script src="./bitcoin.js" async></script>
+	
+	<!--курс usd eur  --> 
 	<script src="./usd.js" async></script>
-	-->
-
-	<!-- 		погода		-->
+	
+		<!-- погода	-->
 		<!-- axios -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js" ></script>
 		<!-- weather-icons -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" rel="stylesheet">
-
+	<!-- prop-types -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.2/prop-types.min.js" async></script>
 </head>
 
 <body>
-
 <div id="nav"></div>
 <br />
 <section>
-	<!--
-	<span class="usd">&#36; : 
-		<span id="usd"></span>
-	</span> 
-	<span class="eur">&#8364; :
-		<span id="eur"></span>
+	<span>
+		cегодня: <span id="" class="data"> </span>
+		<br />
+		<span class="eur-m">&#8364; :</span><span id="" class="eur"></span>
+		<br />
+		<span class="usd-m">&#36;   :</span><span id="" class="usd"></span>
 	</span>
-	-->
 	<span class="bitcoin">&#3647;  : 
 		<span id="bitcoin"></span> <small>dollars</small><!--долларов-->
 	</span>
@@ -76,8 +65,9 @@ if(!(window.ActiveXObject) && "ActiveXObject" in window){
 	</span>
 </section>
 
-<div id="social"></div>
 
+<div id="social"></div>
+<!-- === === === для styled-components === === === -->
 
 <div class="row">
 	<div id="first" class="column">
@@ -101,8 +91,8 @@ const Switch  = ReactRouterDOM.Switch;
 const NavLink = ReactRouterDOM.NavLink;
 const Redirect = ReactRouterDOM.Redirect;
 
-
 /* === === === styled-components === === === */
+
 const styled = styled.default;
 
 const Wrapper = styled.div`
@@ -196,10 +186,9 @@ const CopyLink = styled.a`
 	}
 }  
 `;
+/* === === === styled-components === === === */
 
-/*  === === === styled-components === === === */
-
-/*	 ===== 		погода	start	=====	*/ 
+/*	 ===== 		погода	start	=====	*/
 function getLocation() {
   return axios.get("https://ipapi.co/json/");
 }
@@ -267,20 +256,48 @@ ReactDOM.render(
 );
 
 /*	 ===== 		погода end		=====	*/ 
-
-
+{/*компонент Mayon переделан под state*/}	 
 class Mayon extends React.Component{
-
-	propTypes: {
-	  name: React.PropTypes.string.isRequired,
-	}
-
-	showMessage(){console.log('клик пропс class Mayon');}
 	
-     render(){
+	state = {
+		tabs: [
+			{src: 'img/ocean.jpg'},
+			{src: 'img/beach.jpg'},
+			{src: 'img/pastel.jpg'},
+			{src: 'img/underwater.jpg'},
+			{src: 'img/line.jpg'},
+			{src: 'img/sea.jpg'},
+			{src: 'img/line.jpg'}
+		],
+		mayontitle: ' active stratovolcano '
+	}
+	
+        render(){
+			
+			const tabs = this.state.tabs
+			
+            return (<div>
+						<article className="card">
+							<span>{this.props.island} </span>
+								<img src={tabs[0].src} />
+								<img src={tabs[1].src} />
+								<img src={tabs[2].src} />
+								<img src={tabs[3].src} />
+								<img src={tabs[4].src} />
+								<img src={tabs[5].src} />
+								<img src={tabs[6].src} />
+						</article>
+					</div>);
+        }
+    }
+{/*
+class Mayon extends React.Component{
+	propTypes: {name: React.PropTypes.string.isRequired,}
+	
+     render(props){
             return (
 			  <div>
-			  <span>island: {this.props.island} <span onClick={this.showMessage}>push</span></span>
+			  <span>{this.props.island}</span>
 					<img src="img/ocean.jpg" />
 					<img src="img/beach.jpg" />
 					<img src="img/pastel.jpg" />
@@ -292,19 +309,17 @@ class Mayon extends React.Component{
 			);
         }
     }
-
+*/}
 class Kanlaon extends React.Component{
 
 	propTypes: {
 	  name: React.PropTypes.string.isRequired,
 	}
-
-	showMessage(){console.log('клик пропс class Kanlaon');}
 	
-     render(){
+     render(props){
             return (
 			  <div>
-			  <span>island: {this.props.island} <span onClick={this.showMessage}>push</span></span>
+			  <span>{this.props.island}</span>
 					<img src="img/line.jpg" />
 					<img src="img/pastel.jpg" />
 					<img src="img/ocean.jpg" />
@@ -322,22 +337,77 @@ class Taal extends React.Component{
 	  name: React.PropTypes.string.isRequired,
 	}
 
-     render(){
+     render(props){
             return (
 			  <div>
-			  <span>island: {this.props.island}</span>
-				<img src="img/rocks.jpg"/>
-				<img src="img/falls2.jpg" />
-				<img src="img/sea.jpg"  />
-				<img src="img/nature.jpg" />
-				<img src="img/mist.jpg"   />
-				<img src="img/beach.jpg"  />
-				<img src="img/sea.jpg"  />
+			  <span>{this.props.island}</span>
+					<img src="img/rocks.jpg"/>
+					<img src="img/falls2.jpg" />
+					<img src="img/sea.jpg"  />
+					<img src="img/nature.jpg" />
+					<img src="img/mist.jpg"   />
+					<img src="img/beach.jpg"  />
+					<img src="img/sea.jpg"  />
 			  </div>
 			);
         }
     }
 
+/*  форма авторизации и регистрации */
+class Auth extends React.Component {
+
+    loginHandler = (event) => {
+  
+		console.log(' клац !!');
+		// тут надо сделать редирект на страницу 4
+		<Redirect to="/login" />
+	
+    }
+  registerHandler = () => {}
+  submitHandler = event => {event.preventDefault()}
+
+  render() {
+    return (
+      <div className="auth">
+        <div>
+          <form onSubmit={this.submitHandler} className="authForm">
+		  <h1>Авторизация</h1>
+			<label for="email">e-mail</label>
+				<br />	
+			<input name="" id="" value="" required /> 
+				<br />	
+			<label for="email">password</label>
+				<br />	
+			<input name="" id="" value="" type="text" required />
+		  
+		  <br /><br />
+
+            <div>
+              <span 
+			  type="submit" 
+			  onClick={this.loginHandler} 
+			  className="in"
+			  >
+				Залогиниться
+			  </span>
+            </div>
+
+            {/*
+			<div
+              type="primary"
+              onClick={this.registerHandler}
+            >
+              Зарегистрироваться
+            </div> */}
+          </form>
+        </div>
+      </div>
+    )
+  }
+}
+
+
+{/* class Social styled-components */}
 class Social extends React.Component{
      render(){
             return (
@@ -351,32 +421,44 @@ class Social extends React.Component{
         }
     }
 
+
+
+/*			  */
 	ReactDOM.render(
-		<Taal island="first Taal"/>,
+		<Taal    island=""/>,
 		first
 	);
 	ReactDOM.render(
-		<Mayon island="second Mayon"/>,
+		<Mayon   island=""/>,
 		second
 	);
-
 	ReactDOM.render(
-		<Kanlaon island="third Kanlaon"/>,
+		<Kanlaon island=""/>,
 		third
 	);
-
 	ReactDOM.render(
-		<Taal island="fourth Taal"/>,
+		<Taal    island=""/>,
 		fourth
 	);
 	
+	/*  форма авторизации и регистрации */
+/*	
+	ReactDOM.render(
+		<Auth />,
+		auth
+	);
+*/	
+
 	ReactDOM.render(
 		<Social />,
 		social
 	);
-	
+
+
 	
 	/*    ---    компоненты роутинга       ---      */
+
+	
 	class One extends React.Component{
         render(){
             return (<div>
@@ -415,6 +497,7 @@ class Social extends React.Component{
         }
     }
 	class Four extends React.Component{
+	
         render(){
             return (<div>
 						<h2>Four</h2>
@@ -432,33 +515,54 @@ class Social extends React.Component{
 					<h2>Five</h2>
 						<article className="card">
 						<br />
-						<img className="photo" src="https://source.unsplash.com/random/640x122/" />
+						<img className="photo" src="img/five.png" />
 						<br />
+						
+						<Auth /> 
+						
 						</article>
 					</div>);
         }
     }
+
     class NotFound extends React.Component{
         render(){
 			const notuse = <h4>react router don't use</h4>;
             return (<div>{notuse}</div>);
         }
     }
-      
+  
+ 
 	/*		меню. панель навигации		*/
 	
 	class Nav extends React.Component{
-    render(){
-        return <nav className="et-hero-tabs">
-				<div className="et-hero-tabs-container">
-					<NavLink exact to="/"	 className="et-hero-tab" activeClassName="active">     1.one     </NavLink>					
-					<NavLink exact to="/two"	 className="et-hero-tab" activeClassName="active"> 2.two     </NavLink>
-					<NavLink exact to="/three"   className="et-hero-tab" activeClassName="active"> 3.three   </NavLink>
-					<NavLink exact to="/four"    className="et-hero-tab" activeClassName="active"> 4.four	 </NavLink>
-					<NavLink exact to="/five"    className="et-hero-tab" activeClassName="active"> 5.five	 </NavLink>
-				</div>	
-               </nav>;
-		}
+	
+			state = {
+				user: null
+			}
+
+			login = user => {
+				this.setState({ user });
+			}
+
+			logout = () => {
+				this.setState({ user: null });
+			}
+	
+	
+		clickFour(){console.log('редирект на таб Five ');}
+		
+		render(){
+			return <nav className="et-hero-tabs">
+					<div className="et-hero-tabs-container">
+						<NavLink exact to="/"	     className="et-hero-tab" activeClassName="active"> 1.one     </NavLink>					
+						<NavLink exact to="/two"	 className="et-hero-tab" activeClassName="active"> 2.two     </NavLink>
+						<NavLink exact to="/three"   className="et-hero-tab" activeClassName="active"> 3.three   </NavLink>
+						<NavLink exact to="/four"    className="et-hero-tab" activeClassName="active" onClick={this.clickFour}> 4.four	 </NavLink>
+						<NavLink exact to="/five"    className="et-hero-tab" activeClassName="active"> 5.five	 </NavLink>
+					</div>	
+				   </nav>;
+			}
 	}	
 	
 	/* ====		роутер с подключенной навигацией	==== */

@@ -9,9 +9,14 @@ package-lock.json
 
 /trash
 
-план.txt
+план.js
 
 # production
 /build
 
+# style-components
+/style-components
 
+# desktop.ini 
+desktop.ini
+*.ini
