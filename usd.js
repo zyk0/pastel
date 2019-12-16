@@ -17,47 +17,36 @@ fetch(fixerapi).then(function(response) {
 	//cors
     console.log(response.url);
 });  
+
+console.log(Math.floor(response.status / 100)); // 2
+response.status  = 201
 */
 
-fetch(fixerapi)
-  .then(
-    function(response) {
-      if (response.status !== 200) {	  
-        console.log('problem. Status Code: ' + response.status);
-        return;
-      }
-
-      // response
-      response.json().then(function(data) {
-		  
-		  let date = data.date;
-		  let today = document.querySelector('.data')  
-		  today.innerHTML = date; 
-		  
-		  let euro = (data.rates.RUB).toFixed(2)
-		  let eur = document.querySelector('.eur')  
-		  eur.innerHTML = euro; 
-		  
-		  let usddollar = (data.rates.RUB / data.rates.USD).toFixed(2);
-		  let usd = document.querySelector('.usd')  
-		  usd.innerHTML = usddollar; 
-		  
-        //console.log('на дату: ' + data.date);
-		//console.log('курс деревянного к еврику ' + (data.rates.RUB).toFixed(2) );
-		//console.log('курс деревянного к зеленому ' + (data.rates.RUB / data.rates.USD).toFixed(2));
-	  });
+fetch(fixerapi).then(
+	function(response) {
+      if (Math.floor(response.status / 100) !== 2) {	  
+          console.log('problem. Status Code: ' + response.status);
+      }else{
+		  console.log('good. Status Code: ' + response.status); //200
+		  response.json().then(function(data) {
+			  let date = data.date;
+			  let today = document.querySelector('.data')  
+			  today.innerHTML = date; 
+			  
+			  let euro = (data.rates.RUB).toFixed(2)
+			  let eur = document.querySelector('.eur')  
+			  eur.innerHTML = euro; 
+			  
+			  let usddollar = (data.rates.RUB / data.rates.USD).toFixed(2);
+			  let usd = document.querySelector('.usd')  
+			  usd.innerHTML = usddollar; 
+			//console.log('на дату: ' + data.date);
+			//console.log('курс деревянного к еврику ' + (data.rates.RUB).toFixed(2) );
+			//console.log('курс деревянного к зеленому ' + (data.rates.RUB / data.rates.USD).toFixed(2));
+		  });
+	  }
     }
   )
   .catch(function(err) {
     console.log('Fetch Error: ', err);
   });
-
-
-
-  
-  
-  
-  
-  
-  
-  

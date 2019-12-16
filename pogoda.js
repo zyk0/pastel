@@ -1,12 +1,15 @@
 function getLocation() {
-  return axios.get("https://ipapi.co/json/");
+  // return axios.get("https://ipapi.co/json/");
+  return axios.get("https://ipapi.co/217.114.236.135/city/");
 }
 
 function getWeather(location) {
-  //let location = "";
-    let units = "&units=metric";
-    let appid = "&APPID=48e67de556beb085a793a21ea93a7584";
-  return axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + location + units + appid);
+	//let location = "";
+    //let units = "&units=metric";
+    //let appid = "&APPID=48e67de556beb085a793a21ea93a7584";
+    //return axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + location + units + appid);
+	
+	return axios.get("https://api.openweathermap.org/data/2.5/weather?q=Moscow&units=metric&APPID=48e67de556beb085a793a21ea93a7584");
 }
 
 class Pogoda extends React.Component {

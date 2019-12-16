@@ -1,9 +1,8 @@
 /*
 Fetch() - modern replacement for XMLHttpRequest
-use in world  - 78%
+use in world  - 93.72% 
 https://caniuse.com/#search=fetch
 */
-
 
 var coin = document.getElementById('bitcoin');
 //console.log(coin);
@@ -15,30 +14,22 @@ fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
     else{
       return Promise.resolve(response)
     }
-    //отлов ошибок 
   })
+  
   .then( function(response) {
-        //console.log('status: '  + response.status); 
-       //console.log('URL: ' 	  + response.url);
-      //console.log('type: '      + response.type);
-	  console.info("%c : github.com/zyk0", "background: #de5d83; color: #ffffff"); 
-      return response.json();
+        //console.log('status: '  + response.status); // 200
+       //console.log('URL: ' 	  + response.url);   // url
+      //console.log('type: '      + response.type);   //cors
+	  console.info("%c : github.com/zyk0", "background: #de5d83; color: #ffffff"); //my github
+	  return response.json(); //  json
     })
  
   .then( function(data){
 	 let parsing =  parseInt((data.bpi.USD.rate_float)*1)/1 /* + data.bpi.USD.symbol*/; 
-	 //console.log('parsing: ' + parsing);
+	 // parseInt() принимает строку и возвращает целое число
+	 //console.log('parsing: ' + parsing); //parsing: 9359
 	 let ratecoin =  coin.innerHTML = parsing;
 	 return ratecoin;
-	 
-	 /*
-	 провера на FF и обработка
-	   var ua = navigator.userAgent; 
-	   if (ua.search(/Firefox/)){
-				console.log('это Firefox');
-				return parsing;
-		   }
-	*/
 	
    // data.bpi.USD.rate_float  - "rate_float": 8648.71
   //  parseInt(( number )*1)/1  //укорачиваем число с десятичными до целого числа
@@ -48,4 +39,4 @@ fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
   .catch(function(err) { 
     console.log('ошибка!!');
 	console.log(err);
-  });
+  });	
